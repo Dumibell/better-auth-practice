@@ -38,3 +38,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+# Database files (추가 필요)
+*.db
+*.sqlite
+*.sqlite3
+sqlite.db
+
+# Better Auth migrations (추가 필요)
+better-auth_migrations/
+
