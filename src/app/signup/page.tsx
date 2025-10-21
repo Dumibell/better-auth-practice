@@ -41,6 +41,10 @@ export default function SignUp() {
           router.push("/signup-success");
         },
         onError: (ctx) => {
+          // when email verification is required
+          if (ctx.error.status === 403) {
+            alert("Please verify your email address");
+          }
           // display the error message
           console.log("ctx in onError", ctx);
           alert(ctx.error.message);

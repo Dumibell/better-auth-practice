@@ -1,7 +1,10 @@
-import { betterAuth } from "better-auth";
+import { sso } from "@better-auth/sso";
+import { betterAuth, User } from "better-auth";
 import { createPool } from "mysql2/promise";
 
 export const auth = betterAuth({
+  plugins: [sso()],
+
   database: createPool({
     host: "localhost",
     user: "root",
@@ -13,7 +16,32 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     autoSignIn: false, // 테스트 해보기
-    requireEmailVerification: false,
+    // requireEmailVerification: true,
+  },
+
+  user: {
+    deleteUser: {
+      enabled: true,
+    },
+  },
+
+  email: {
+    sendVerificationEmail: async ({
+      user,
+      url,
+      token,
+    }: {
+      user: User;
+      url: string;
+      token: string;
+    }) => {
+      // TODO: send verification email
+      // await sendEmail({
+      //   to: user.email,
+      //   subject: "Verify your email address",
+      //   text: `Click the link to verify your email: ${url}`,
+      // });
+    },
   },
 
   // socialProviders: {
