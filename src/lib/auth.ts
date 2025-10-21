@@ -1,9 +1,14 @@
 import { betterAuth } from "better-auth";
-import Database from "better-sqlite3";
-import path from "path";
+import { createPool } from "mysql2/promise";
 
 export const auth = betterAuth({
-  database: new Database(path.join(process.cwd(), "sqlite.db")),
+  database: createPool({
+    host: "localhost",
+    user: "root",
+    password: process.env.NEXT_PUBLIC_DATABASE_PASSWORD,
+    database: process.env.NEXT_PUBLIC_BETTER_AUTH_DATABASE,
+    timezone: "Z", // Important to ensure consistent timezone values
+  }),
 
   emailAndPassword: {
     enabled: true,
@@ -18,6 +23,6 @@ export const auth = betterAuth({
   //   },
   // },
 
-  baseURL: process.env.BETTER_AUTH_URL,
-  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
+  secret: process.env.NEXT_PUBLIC_BETTER_AUTH_SECRET,
 });

@@ -54,6 +54,8 @@ export default function SignIn() {
         <div className="flex gap-2">
           <label>email</label>
           <input
+            type="email"
+            value={email}
             className="w-30 border"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -61,6 +63,8 @@ export default function SignIn() {
         <div className="flex gap-2">
           <label>password</label>
           <input
+            type="password"
+            value={password}
             className="w-30 border"
             onChange={(e) => setPassword(e.target.value)}
           />
