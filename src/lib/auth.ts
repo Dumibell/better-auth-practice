@@ -44,12 +44,16 @@ export const auth = betterAuth({
     },
   },
 
-  // socialProviders: {
-  //   google: {
-  //     clientId: "YOUR_GOOGLE_CLIENT_ID",
-  //     clientSecret: "YOUR_GOOGLE_CLIENT_SECRET",
-  //   },
-  // },
+  socialProviders: {
+    google: {
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
+    },
+    github: {
+      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID!,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET!,
+    },
+  },
 
   baseURL: process.env.NEXT_PUBLIC_BETTER_AUTH_URL,
   secret: process.env.NEXT_PUBLIC_BETTER_AUTH_SECRET,
